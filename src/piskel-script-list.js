@@ -79,6 +79,9 @@
   "js/model/Palette.js",
   "js/model/Piskel.js",
 
+  // Database (IndexedDB)
+  "js/database/BackupDatabase.js",
+
   // Selection
   "js/selection/SelectionManager.js",
   "js/selection/BaseSelection.js",
