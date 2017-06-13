@@ -122,12 +122,10 @@
 
   // Settings sub-controllers
   "js/controller/settings/AbstractSettingController.js",
-  "js/controller/settings/preferences/GridPreferencesController.js",
-  "js/controller/settings/preferences/MiscPreferencesController.js",
-  "js/controller/settings/preferences/TilePreferencesController.js",
-  "js/controller/settings/PreferencesController.js",
+  "js/controller/settings/ApplicationSettingsController.js",
   "js/controller/settings/exportimage/GifExportController.js",
   "js/controller/settings/exportimage/PngExportController.js",
+  "js/controller/settings/exportimage/SprExportController.js",
   "js/controller/settings/exportimage/ZipExportController.js",
   "js/controller/settings/exportimage/MiscExportController.js",
   "js/controller/settings/exportimage/ExportController.js",
@@ -162,9 +160,7 @@
   "js/widgets/FramePicker.js",
   "js/widgets/HslRgbColorPicker.js",
   "js/widgets/SizeInput.js",
-  "js/widgets/SizePicker.js",
   "js/widgets/SynchronizedInputs.js",
-  "js/widgets/Tabs.js",
   "js/widgets/Wizard.js",
 
   // Services

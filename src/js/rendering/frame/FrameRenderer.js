@@ -55,7 +55,7 @@
     this.displayCanvas = null;
     this.setDisplaySize(renderingOptions.width, renderingOptions.height);
 
-    this.setGridWidth(this.getUserGridWidth_());
+    this.setGridWidth(pskl.UserSettings.get(pskl.UserSettings.GRID_WIDTH));
 
     $.subscribe(Events.USER_SETTINGS_CHANGED, this.onUserSettingsChange_.bind(this));
   };
@@ -138,10 +138,6 @@
     this.offset.y = y;
   };
 
-  ns.FrameRenderer.prototype.getGridColor = function () {
-    return pskl.UserSettings.get(pskl.UserSettings.GRID_COLOR);
-  };
-
   ns.FrameRenderer.prototype.setGridWidth = function (value) {
     this.gridWidth_ = value;
   };
@@ -184,16 +180,9 @@
   };
 
   ns.FrameRenderer.prototype.onUserSettingsChange_ = function (evt, settingName, settingValue) {
-    var settings = pskl.UserSettings;
-    if (settingName == settings.GRID_WIDTH || settingName == settings.GRID_ENABLED) {
-      this.setGridWidth(this.getUserGridWidth_());
+    if (settingName == pskl.UserSettings.GRID_WIDTH) {
+      this.setGridWidth(settingValue);
     }
-  };
-
-  ns.FrameRenderer.prototype.getUserGridWidth_ = function () {
-    var gridEnabled = pskl.UserSettings.get(pskl.UserSettings.GRID_ENABLED);
-    var width = pskl.UserSettings.get(pskl.UserSettings.GRID_WIDTH);
-    return gridEnabled ? width : 0;
   };
 
   /**
@@ -299,25 +288,15 @@
     // Draw grid.
     var gridWidth = this.computeGridWidthForDisplay_();
     if (gridWidth > 0) {
-      var gridColor = this.getGridColor();
       // Scale out before drawing the grid.
       displayContext.scale(1 / z, 1 / z);
-
-      var drawOrClear;
-      if (gridColor === Constants.TRANSPARENT_COLOR) {
-        drawOrClear = displayContext.clearRect.bind(displayContext);
-      } else {
-        displayContext.fillStyle = gridColor;
-        drawOrClear = displayContext.fillRect.bind(displayContext);
-      }
-
-      // Draw or clear vertical lines.
+      // Clear vertical lines.
       for (var i = 1 ; i < frame.getWidth() ; i++) {
-        drawOrClear((i * z) - (gridWidth / 2), 0, gridWidth, h * z);
+        displayContext.clearRect((i * z) - (gridWidth / 2), 0, gridWidth, h * z);
       }
-      // Draw or clear horizontal lines.
+      // Clear horizontal lines.
       for (var j = 1 ; j < frame.getHeight() ; j++) {
-        drawOrClear(0, (j * z) - (gridWidth / 2), w * z, gridWidth);
+        displayContext.clearRect(0, (j * z) - (gridWidth / 2), w * z, gridWidth);
       }
     }
 

@@ -34,7 +34,6 @@
     var serializedFrame = [
       this.getZoom(),
       this.getGridWidth(),
-      this.getGridColor(),
       pskl.UserSettings.get('SEAMLESS_MODE'),
       pskl.UserSettings.get('SEAMLESS_OPACITY'),
       offset.x, offset.y,

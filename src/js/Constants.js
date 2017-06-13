@@ -1,18 +1,18 @@
 // TODO(grosbouddha): put under pskl namespace.
 var Constants = {
   DEFAULT : {
-    HEIGHT : 32,
-    WIDTH : 32,
+    HEIGHT : 16,
+    WIDTH : 16,
     FPS : 12,
     LAYER_OPACITY : 0.2
   },
 
   MODEL_VERSION : 2,
 
-  MAX_HEIGHT : 1024,
-  MAX_WIDTH : 1024,
+  MAX_HEIGHT : 16,
+  MAX_WIDTH : 16,
 
-  MAX_PALETTE_COLORS : 100,
+  MAX_PALETTE_COLORS : 256,
   // allow current colors service to get up to 256 colors.
   // GIF generation is different if the color count goes over 256.
   MAX_WORKER_COLORS : 256,

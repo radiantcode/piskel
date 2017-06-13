@@ -2,9 +2,7 @@
   var ns = $.namespace('pskl.worker.imageprocessor');
 
   ns.ImageProcessorWorker = function () {
-    var currentStep;
-    var currentProgress;
-    var currentTotal;
+    var currentStep, currentProgress, currentTotal;
 
     var initStepCounter_ = function (total) {
       currentStep = 0;

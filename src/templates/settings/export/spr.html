@@ -1,0 +1,23 @@
+<script type="text/html" id="templates/settings/export/spr.html">
+  <div class="export-panel-spr">
+    <div class="export-panel-header export-info">Export your animation as a sprite for the ZX Spectrum Next.</div>
+    <div class="export-panel-section  spr-export-layout-section">
+      <div class="highlight" style="padding-bottom: 5px;">Spritesheet layout options:</div>
+      <div style="display: flex; line-height: 20px;">
+        <div style="flex: 1;">
+          <span>Columns</span>
+          <input type="number" min="1" class="textfield" id="spr-export-columns" name="spr-export-columns">
+        </div>
+        <div style="flex: 1;">
+          <span>Rows</span>
+          <input readonly="true" class="textfield" id="spr-export-rows" name="spr-export-rows">
+        </div>
+      </div>
+    </div>
+    <div class="export-panel-section export-panel-row">
+      <button type="button" class="button button-primary spr-download-button">Download</button>
+      <span class="spr-export-dimension-info export-info"></span>
+    </div>
+
+  </div>
+</script>

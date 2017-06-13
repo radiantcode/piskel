@@ -10,9 +10,6 @@
   ns.app = {
 
     init : function () {
-      // Run preferences migration scripts for version v0.12.0
-      pskl.UserSettings.migrate_to_v0_12();
-
       /**
        * When started from APP Engine, appEngineToken_ (Boolean) should be set on window.pskl
        */
@@ -23,7 +20,7 @@
 
       var size = pskl.UserSettings.get(pskl.UserSettings.DEFAULT_SIZE);
       var fps = Constants.DEFAULT.FPS;
-      var descriptor = new pskl.model.piskel.Descriptor('New Piskel', '');
+      var descriptor = new pskl.model.piskel.Descriptor('New Sprite', '');
       var piskel = new pskl.model.Piskel(size.width, size.height, fps, descriptor);
 
       var layer = new pskl.model.Layer('Layer 1');

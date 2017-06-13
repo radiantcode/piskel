@@ -6,6 +6,10 @@
       template : 'templates/settings/export/png.html',
       controller : ns.PngExportController
     },
+    'spr' : {
+      template : 'templates/settings/export/spr.html',
+      controller : ns.SprExportController
+    },
     'gif' : {
       template : 'templates/settings/export/gif.html',
       controller : ns.GifExportController
@@ -22,7 +26,6 @@
 
   ns.ExportController = function (piskelController) {
     this.piskelController = piskelController;
-    this.tabsWidget = new pskl.widgets.Tabs(tabs, this, pskl.UserSettings.EXPORT_TAB);
     this.onSizeInputChange_ = this.onSizeInputChange_.bind(this);
   };
 
@@ -48,14 +51,48 @@
     this.onSizeInputChange_();
 
     // Initialize tabs and panel
-    var container = document.querySelector('.settings-section-export');
-    this.tabsWidget.init(container);
+    this.exportPanel = document.querySelector('.export-panel');
+    this.exportTabs = document.querySelector('.export-tabs');
+    this.addEventListener(this.exportTabs, 'click', this.onTabsClicked_);
+
+    var tab = pskl.UserSettings.get(pskl.UserSettings.EXPORT_TAB);
+    this.selectTab(tab);
   };
 
   ns.ExportController.prototype.destroy = function () {
     this.sizeInputWidget.destroy();
-    this.tabsWidget.destroy();
+    this.currentController.destroy();
     this.superclass.destroy.call(this);
+  };
+
+  ns.ExportController.prototype.selectTab = function (tabId) {
+    console.log(tabs)
+    console.log(tabId)
+    console.log("test")
+    if (!tabs[tabId] || this.currentTab == tabId) {
+      return;
+    }
+
+    if (this.currentController) {
+      this.currentController.destroy();
+    }
+
+    this.exportPanel.innerHTML = pskl.utils.Template.get(tabs[tabId].template);
+    this.currentController = new tabs[tabId].controller(this.piskelController, this);
+    this.currentController.init();
+    this.currentTab = tabId;
+    pskl.UserSettings.set(pskl.UserSettings.EXPORT_TAB, tabId);
+
+    var selectedTab = this.exportTabs.querySelector('.selected');
+    if (selectedTab) {
+      selectedTab.classList.remove('selected');
+    }
+    this.exportTabs.querySelector('[data-tab-id="' + tabId + '"]').classList.add('selected');
+  };
+
+  ns.ExportController.prototype.onTabsClicked_ = function (e) {
+    var tabId = pskl.utils.Dom.getData(e.target, 'tabId');
+    this.selectTab(tabId);
   };
 
   ns.ExportController.prototype.onScaleChange_ = function () {

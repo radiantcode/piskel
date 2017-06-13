@@ -227,8 +227,7 @@
     var dimension = slider.dataset.dimension;
     var model = slider.dataset.model;
 
-    var start;
-    var end;
+    var start, end;
     var isHueSlider = dimension === 'h';
     if (!isHueSlider) {
       var colors = this.getSliderBackgroundColors_(model, dimension);

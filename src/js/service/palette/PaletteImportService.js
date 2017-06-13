@@ -35,6 +35,8 @@
 
   ns.PaletteImportService.prototype.getReaderClass_ = function (file) {
     var ReaderClass;
+    console.log(file);
+    console.log(file.type);
     if (this.isImage_(file)) {
       ReaderClass = fileReaders.img;
     } else {

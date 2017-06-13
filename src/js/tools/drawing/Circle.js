@@ -35,11 +35,7 @@
     var evenY = (coords.y0 + coords.y1) % 2;
     var rX = coords.x1 - xC;
     var rY = coords.y1 - yC;
-
-    var x;
-    var y;
-    var angle;
-    var r;
+    var x, y, angle, r;
 
     if (penSize == 1) {
       for (x = coords.x0 ; x <= xC ; x++) {
